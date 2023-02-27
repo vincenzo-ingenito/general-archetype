@@ -10,4 +10,5 @@
             <defaultValue>1.0.0-SNAPSHOT</defaultValue>
         </requiredProperty>
     </requiredProperties>
+    <packaging>jar</packaging>
 </archetype-descriptor>
