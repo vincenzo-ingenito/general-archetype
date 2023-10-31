@@ -5,7 +5,7 @@
 	<groupId>${groupId}</groupId>
 	<artifactId>${artifactId}</artifactId>
 	<version>${version}</version>
-	<packaging>jar</packaging> <!-- Modificato il tipo di packaging a "jar" per un'applicazione Spring Boot -->
+	<packaging>pom</packaging> <!-- Modificato il tipo di packaging a "jar" per un'applicazione Spring Boot -->
 
 	<properties>
 		<java.version>1.8</java.version> <!-- Imposta la versione di Java -->
