@@ -1,85 +1,55 @@
-<project
-    xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>${groupId}</groupId>
-    <artifactId>${artifactId}</artifactId>
-    <version>${version}</version>
-    <packaging>war</packaging>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>${groupId}</groupId>
+	<artifactId>${artifactId}</artifactId>
+	<version>${version}</version>
+	<packaging>jar</packaging> <!-- Modificato il tipo di packaging a "jar" per un'applicazione Spring Boot -->
 
-    <build>
-        <finalName>${artifactId}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>net.wasdev.wlp.maven.plugins</groupId>
-                <artifactId>liberty-maven-plugin</artifactId>
-                <version>${liberty-maven-plugin.version}</version>
-                <configuration>
-                    <install>
-                        <runtimeUrl>
-                            https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/2018-06-18_1442/openliberty-all-20180618-1300.zip
-                        </runtimeUrl>
-                    </install>
-                    <looseApplication>true</looseApplication>
-                    <installAppPackages>project</installAppPackages>
-                    <configFile>src/main/liberty/config/server.xml</configFile>
-                    <stripVersion>true</stripVersion>
-                    <bootstrapProperties>
-                        <default.http.port>${defaultHttpPort}</default.http.port>
-                        <default.https.port>${defaultHttpsPort}</default.https.port>
-                    </bootstrapProperties>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>install-server</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>install-server</goal>
-                            <goal>create-server</goal>
-                            <goal>install-feature</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>install-apps</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>install-apps</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+	<properties>
+		<java.version>1.8</java.version> <!-- Imposta la versione di Java -->
+		<spring.boot.version>2.6.3</spring.boot.version> <!-- Imposta la versione di Spring Boot -->
+	</properties>
 
-    <dependencies>
+	<dependencies>
+		<!-- Dipendenze di base per Spring Boot -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<!-- Dipendenza per le applicazioni web di Spring Boot -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- Altre dipendenze specifiche del tuo progetto -->
 
-        <dependency>
-            <groupId>javax.enterprise</groupId>
-            <artifactId>cdi-api</artifactId>
-            <version>${cdi.api.version}</version>
-            <scope>provided</scope>
-        </dependency>
+		<!-- Dipendenza per CDI (se necessario) -->
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<version>${cdi.api.version}</version>
+			<scope>provided</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
-            <version>${rsapi.api.version}</version>
-            <scope>provided</scope>
-        </dependency>
+		<!-- Dipendenza per JAX-RS (se necessario) -->
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>${rsapi.api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 
-    </dependencies>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
-        <liberty-maven-plugin.version>${liberty-plugin-version}</liberty-maven-plugin.version>
-        <defaultHttpPort>9080</defaultHttpPort>
-        <defaultHttpsPort>9443</defaultHttpsPort>
-        <cdi.api.version>2.0</cdi.api.version>
-        <rsapi.api.version>2.1</rsapi.api.version>
-    </properties>
-
+	<build>
+		<plugins>
+			<!-- Plugin per Spring Boot -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring.boot.version}</version>
+			</plugin>
+		</plugins>
+	</build>
 </project>
