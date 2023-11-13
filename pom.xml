@@ -31,27 +31,20 @@
 	</properties>
 
 	<profiles>
-			<profile>
-				<id>mongodb</id>
-				<activation>
-					<property>
-						<name>includeMongoDBSupport</name>
-						<value>true</value>
-					</property>
-				</activation>
-				<dependencies>
-					<!-- Dipendenze MongoDB -->
-					<dependency>
-						<groupId>org.springframework.boot</groupId>
-						<artifactId>spring-boot-starter-data-mongodb</artifactId>
-					</dependency>
-					<dependency>
-						<groupId>org.mongodb</groupId>
-						<artifactId>mongodb-driver-sync</artifactId>
-					</dependency>
-				</dependencies>
-			</profile>
-		</profiles>
+    <profile>
+        <id>MONGO</id>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-mongodb</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongodb-driver-sync</artifactId>
+            </dependency>
+        </dependencies>
+    </profile>
+</profiles>
 	<dependencies>
 
 		<!-- WEB -->
