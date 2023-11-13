@@ -27,7 +27,7 @@
 		<!-- Sonar integration -->
 		<sonar.organization>ministero-salute</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		 		<includeMongoDBSupport>false</includeMongoDBSupport>
+		<includeMongoDBSupport>false</includeMongoDBSupport>
 
 	</properties>
 
@@ -53,8 +53,7 @@
 			</dependencies>
 		</profile>
 	</profiles>
-
-	</properties>
+ 
 
 	<profiles>
     <profile>
