@@ -30,6 +30,28 @@
 		 
 	</properties>
 
+	<profiles>
+			<profile>
+				<id>mongodb</id>
+				<activation>
+					<property>
+						<name>includeMongoDBSupport</name>
+						<value>true</value>
+					</property>
+				</activation>
+				<dependencies>
+					<!-- Dipendenze MongoDB -->
+					<dependency>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-data-mongodb</artifactId>
+					</dependency>
+					<dependency>
+						<groupId>org.mongodb</groupId>
+						<artifactId>mongodb-driver-sync</artifactId>
+					</dependency>
+				</dependencies>
+			</profile>
+		</profiles>
 	<dependencies>
 
 		<!-- WEB -->
@@ -115,19 +137,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- MONGODB -->
-		${includeMongoDBSupport:true}
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.mongodb</groupId>
-			<artifactId>mongodb-driver-sync</artifactId>
-		</dependency>
-		${includeMongoDBSupport:false}
-
+ 
 		<!-- KAFKA -->
 		<dependency>
 			<groupId>org.springframework.kafka</groupId>
@@ -261,30 +271,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
- 			<plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <executions>
-                <execution>
-                    <id>add-mongodb-dependency</id>
-                    <phase>initialize</phase>
-                    <goals>
-                        <goal>add</goal>
-                    </goals>
-                    <configuration>
-                        <artifacts>
-                            <artifact>
-                                <groupId>org.springframework.boot</groupId>
-                                <artifactId>spring-boot-starter-data-mongodb</artifactId>
-                                <version>${spring.boot.version}</version>
-                            </artifact>
-                            <!-- Aggiungi altre dipendenze MongoDB se necessario -->
-                        </artifacts>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
+			</plugin> 
 		</plugins>
 
 	</build>
