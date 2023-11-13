@@ -1,0 +1,3 @@
+<requiredProperties>
+  <requiredProperty key="includeMongoDBSupport" />
+</requiredProperties>
