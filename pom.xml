@@ -26,44 +26,10 @@
 		<container.output.runtime>${container.output}/runtime</container.output.runtime>
 		<!-- Sonar integration -->
 		<sonar.organization>ministero-salute</sonar.organization>
-		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<includeMongoDBSupport>false</includeMongoDBSupport>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url> 
 
 	</properties>
 
-	<profiles>
-		<profile>
-			<id>mongodb</id>
-			<activation>
-				<property>
-					<name>includeMongoDBSupport</name>
-					<value>true</value>
-				</property>
-			</activation>
-			<dependencies>
-				<dependency>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-data-mongodb</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>org.mongodb</groupId>
-					<artifactId>mongodb-driver-sync</artifactId>
-				</dependency>
-			</dependencies>
-		</profile>
-
-		<profile>
-			<id>default</id>
-			<activation>
-				<property>
-					<name>!includeMongoDBSupport</name>
-				</property>
-			</activation>
-			<dependencies>
-				<!-- Nessuna dipendenza MongoDB -->
-			</dependencies>
-		</profile>
-	</profiles>
  
 	<dependencies>
 
@@ -174,18 +140,14 @@
 			<artifactId>spring-cloud-starter-sleuth</artifactId>
 		</dependency>
  
-		<!-- Dipendenze MongoDB condizionali -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-			<optional>${includeMongoDBSupport}</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.mongodb</groupId>
-			<artifactId>mongodb-driver-sync</artifactId>
-			<optional>${includeMongoDBSupport}</optional>
-		</dependency>
- 
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-data-mongodb</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.mongodb</groupId>
+					<artifactId>mongodb-driver-sync</artifactId>
+				</dependency>
 	</dependencies>
 
 	<dependencyManagement>
