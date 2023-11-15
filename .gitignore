@@ -12,3 +12,4 @@ bin/
 .metadata
 tmp/
 .idea
+.DS_Store
