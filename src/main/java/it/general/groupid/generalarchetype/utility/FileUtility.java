@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class FileUtility {
- 
+
 	/**
 	 * Max size chunk.
 	 */
@@ -33,14 +33,20 @@ public final class FileUtility {
 	 * @return			contenuto del file
 	 */
 	public static byte[] getFileFromInternalResources(final String filename) {
+		if (filename == null || filename.trim().isEmpty()) {
+			throw new IllegalArgumentException("Filename cannot be null or an empty string");
+		}
+
 		byte[] b = null;
 		try (InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(filename)) {
 			b = getByteFromInputStream(is);
 		} catch (Exception e) {
 			log.error("FILE UTILS getFileFromInternalResources(): Errore in fase di recupero del contenuto di un file dalla folder '/src/main/resources'. ", e);
+			throw new BusinessException(e);
 		}
 		return b;
 	}
+
 
 	/**
 	 * Recupero contenuto file da input stream.
@@ -51,6 +57,12 @@ public final class FileUtility {
 	 */
 	private static byte[] getByteFromInputStream(final InputStream is) {
 		byte[] b;
+
+		if (is == null) {
+			log.error("Input stream is null");
+			throw new IllegalArgumentException("Input stream is null");
+		}
+
 		try {
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 			int nRead;

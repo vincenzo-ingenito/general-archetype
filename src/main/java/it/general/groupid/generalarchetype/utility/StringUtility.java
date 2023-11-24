@@ -47,6 +47,10 @@ public final class StringUtility {
 	 * @return String Encoded.
 	 */
 	public static String encodeSHA256(final byte[] objectToEncode) {
+		if (objectToEncode == null) {
+			throw new IllegalArgumentException(ERROR_MSG + ": Input is null");
+		}
+
 		try {
 			final MessageDigest digest = MessageDigest.getInstance(SHA_ALGORITHM);
 			return Hex.encodeHexString(digest.digest(objectToEncode));
@@ -63,6 +67,10 @@ public final class StringUtility {
 	 * @return String Encoded.
 	 */
 	public static String encodeSHA256B64(final String objectToEncode) {
+		if (objectToEncode == null) {
+			throw new IllegalArgumentException(ERROR_MSG + ": Input is null");
+		}
+
 		try {
 			final MessageDigest digest = MessageDigest.getInstance(SHA_ALGORITHM);
 			final byte[] hash = digest.digest(objectToEncode.getBytes());
@@ -80,6 +88,10 @@ public final class StringUtility {
 	 * @return String Encoded.
 	 */
 	public static String encodeSHA256Hex(final String objectToEncode) {
+		if (objectToEncode == null) {
+			throw new IllegalArgumentException(ERROR_MSG + ": Input is null");
+		}
+
 		try {
 			final MessageDigest digest = MessageDigest.getInstance(SHA_ALGORITHM);
 			final byte[] hash = digest.digest(objectToEncode.getBytes());
@@ -97,9 +109,13 @@ public final class StringUtility {
 	 * @return		The encoded byte array to String.
 	 */
 	public static String encodeBase64(final byte[] input) {
+		if (input == null) {
+			throw new IllegalArgumentException("Error while encode in base 64: Input is null");
+		}
+		
 		return Base64.getEncoder().encodeToString(input);
 	}
-
+ 
 	/**
 	 * Encodes the byte array passed as parameter in hexadecimal.
 	 * 
@@ -107,6 +123,10 @@ public final class StringUtility {
 	 * @return		The encoded byte array to String.
 	 */
 	public static String encodeHex(final byte[] input) {
+		if (input == null) {
+			throw new IllegalArgumentException("Error while encode hex: Input is null");
+		}
+		
 		return Hex.encodeHexString(input);
 	}
 
@@ -114,7 +134,8 @@ public final class StringUtility {
 		return UUID.randomUUID().toString();
 	}
 
-
+ 
+	
 	/**
 	 * Transformation from Object to Json.
 	 * 
